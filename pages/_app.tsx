@@ -1,12 +1,25 @@
-import { Container, AppProps } from "next/app";
+import App, { Container } from "next/app";
+import { ApolloProvider } from "@apollo/react-hooks";
+
 import Layout from "../components/Layout";
+import { client } from "../lib/apollo";
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => (
-  <Container className="w-full h-full">
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  </Container>
-);
+import "../style.css";
 
-export default App;
+class MyApp extends App {
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <Container className="w-full h-full">
+        <ApolloProvider client={client}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </Container>
+    );
+  }
+}
+
+export default MyApp;

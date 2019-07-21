@@ -1,12 +1,17 @@
 import { NextPage } from "next";
 import { redirect } from "../lib/utils";
+import nookies from "nookies";
 
-import "../style.css";
-
-const Index: NextPage<void> = () => <p>Hello Next.js</p>;
+const Index: NextPage = () => <p>You're in!</p>;
 
 Index.getInitialProps = async ctx => {
-  redirect(ctx, "/login");
+  const { token } = nookies.get(ctx);
+
+  if (!token) {
+    redirect(ctx, "/login");
+  }
+
+  return {}
 };
 
 export default Index;
