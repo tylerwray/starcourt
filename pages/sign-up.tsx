@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
@@ -6,6 +5,7 @@ import gql from "graphql-tag";
 import Router from "next/router";
 import nookies from "nookies";
 import Input from "../components/Input";
+import { useFormField } from "../hooks/useFormField";
 
 const SIGN_UP = gql`
   mutation SignUp($username: String!, $password: String!) {
@@ -43,7 +43,7 @@ const SignUp: NextPage = () => {
   return (
     <div className="flex justify-center items-start h-full bg-gray-100">
       <form
-        className="w-3/4 px-4 py-8 mt-32 bg-white shadow-lg flex flex-col items-center"
+        className="w-3/4 sm:w-1/4 px-4 py-8 mt-32 bg-white shadow-lg flex flex-col items-center"
         onSubmit={e => {
           e.preventDefault();
           signUp({
@@ -55,7 +55,7 @@ const SignUp: NextPage = () => {
         }}
       >
         {error && <div className="text-red-500">{error.message}</div>}
-        <h1 className="text-gray-900 font-semibold text-xl mb-8">Sign up</h1>
+        <h2 className="mb-8 text-gray-700 text-2xl">Sign up</h2>
         <div className="mb-4 w-3/4">
           <Input
             id="username"
@@ -87,13 +87,6 @@ const SignUp: NextPage = () => {
       </form>
     </div>
   );
-};
-
-const useFormField = () => {
-  const [value, setValue] = useState("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(e.target.value);
-  return { value, onChange: handleChange };
 };
 
 export default SignUp;
