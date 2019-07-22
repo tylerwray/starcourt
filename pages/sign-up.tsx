@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Router from "next/router";
 import nookies from "nookies";
+import Input from "../components/Input";
 
 const SIGN_UP = gql`
   mutation SignUp($username: String!, $password: String!) {
@@ -40,14 +41,9 @@ const SignUp: NextPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-start h-full bg-blue-400">
-      <Link href="/login">
-        <a className="fixed left-0 top-0 p-3 cursor-pointer text-gray-900 hover:underline">
-          &larr; Login
-        </a>
-      </Link>
+    <div className="flex justify-center items-start h-full bg-gray-100">
       <form
-        className="px-12 py-8 mt-64 bg-white shadow-lg flex flex-col items-center"
+        className="w-3/4 px-4 py-8 mt-32 bg-white shadow-lg flex flex-col items-center"
         onSubmit={e => {
           e.preventDefault();
           signUp({
@@ -60,14 +56,34 @@ const SignUp: NextPage = () => {
       >
         {error && <div className="text-red-500">{error.message}</div>}
         <h1 className="text-gray-900 font-semibold text-xl mb-8">Sign up</h1>
-        <input className="mb-4" placeholder="Username" {...username} />
-        <input className="mb-8" placeholder="Password" {...password} />
+        <div className="mb-4 w-3/4">
+          <Input
+            id="username"
+            label="Username"
+            placeholder="jimmy"
+            {...username}
+          />
+        </div>
+        <div className="mb-4 w-3/4">
+          <Input
+            id="password"
+            label="Password"
+            placeholder="***************"
+            {...password}
+          />
+        </div>
         <button
           type="submit"
-          className="border border-blue-900 rounded-lg px-3 py-1 text-blue-900 hover:bg-blue-100"
+          className="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 mb-4 rounded-lg"
         >
-          Submit
+          Sign up
         </button>
+        <hr className="h-px w-3/4 bg-gray-400" />
+        <Link href="login">
+          <button className="w-3/4 border border-pink-900 text-pink-900 rounded-lg hover:bg-pink-100 py-2 px-4 mt-4">
+            &larr; Login
+          </button>
+        </Link>
       </form>
     </div>
   );
