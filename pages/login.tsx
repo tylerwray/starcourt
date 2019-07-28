@@ -1,12 +1,13 @@
-import { NextPage } from "next";
-import Link from "next/link";
-import { parseCookies, setCookie } from "nookies";
-import { redirect } from "../lib/utils";
-import Input from "../components/Input";
-import { useFormField } from "../hooks/useFormField";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { NextPage } from "next";
+import Link from "next/link";
 import Router from "next/router";
+import { parseCookies, setCookie } from "nookies";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import { useFormField } from "../hooks/useFormField";
+import { redirect } from "../lib/utils";
 
 const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
@@ -42,12 +43,12 @@ const Login: NextPage = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-full bg-gray-100">
-      <div className="hidden md:flex w-2/3 flex flex-col justify-center items-center bg-pink-100">
-        <h1 className="mt-32 font-bold text-pink-900 text-4xl tracking-widest">
+    <div className="flex flex-col md:flex-row h-full bg-gray-200">
+      <div className="hidden md:flex w-1/2 flex flex-col justify-center items-center">
+        <h1 className="mt-32 font-bold text-gray-800 text-4xl tracking-widest font-serif">
           TARS
         </h1>
-        <h5 className="text-gray-600 text-lg">
+        <h5 className="text-gray-700 text-lg">
           Do anything you want, with money
         </h5>
         <div className="flex-grow" />
@@ -57,18 +58,17 @@ const Login: NextPage = () => {
           alt="Man with overflowing piggy bank"
         />
       </div>
-      <div className="md:hidden flex flex-col justify-center items-center bg-pink-100">
-        <h1 className="mt-8 font-bold text-pink-900 text-4xl tracking-widest">
+      <div className="md:hidden flex flex-col justify-center items-center">
+        <h1 className="mt-8 text-gray-800 text-4xl tracking-widest font-thin">
           TARS
         </h1>
-        <h5 className="text-gray-600 text-lg">
+        <h5 className="text-gray-700 text-lg italic font-hairline">
           Do anything you want, with money
         </h5>
       </div>
-      <img className="md:hidden w-full -mt-1" src="/static/images/wave.svg" />
-      <div className="w-full sm:w-1/3">
+      <main className="w-full sm:w-1/2">
         <form
-          className="w-3/4 my-0 mx-auto mt-8 md:mt-56 bg-white shadow-md rounded py-8 px-4 flex flex-col items-center"
+          className="w-3/4 my-0 mx-auto mt-8 md:mt-56 bg-white shadow-md rounded py-8 px-4 flex flex-col items-center max-w-sm"
           onSubmit={e => {
             e.preventDefault();
             login({
@@ -79,7 +79,7 @@ const Login: NextPage = () => {
             });
           }}
         >
-          <h2 className="mb-8 text-gray-700 text-2xl">Login</h2>
+          <h2 className="mb-8 text-gray-700 text-2xl font-light">Login</h2>
           <div className="mb-4 w-3/4">
             <Input
               id="username"
@@ -97,17 +97,17 @@ const Login: NextPage = () => {
               {...password}
             />
           </div>
-          <button className="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 mb-4 rounded-lg">
-            Submit
-          </button>
+          <Button type="submit" className="mb-4">
+            Login
+          </Button>
           <hr className="h-px w-3/4 bg-gray-400" />
           <Link href="sign-up">
-            <button className="w-3/4 border border-pink-900 text-pink-900 rounded-lg hover:bg-pink-100 py-2 px-4 mt-4">
+            <Button outline className=" w-3/4 mt-4">
               Sign up &rarr;
-            </button>
+            </Button>
           </Link>
         </form>
-      </div>
+      </main>
     </div>
   );
 };

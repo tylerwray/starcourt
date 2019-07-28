@@ -7,7 +7,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 const Input: React.FC<Props> = ({ id, label, ...props }) => (
   <>
     <label
-      className="block w-full text-left text-gray-700 text-sm font-bold mb-2"
+      className="block w-full text-left text-gray-700 text-sm font-medium mb-2"
       htmlFor={id}
     >
       {label}

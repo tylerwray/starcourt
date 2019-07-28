@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 /* Next.js react root element */
 html,
 body,

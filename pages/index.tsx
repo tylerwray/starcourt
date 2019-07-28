@@ -1,15 +1,12 @@
 import { NextPage } from "next";
-import { redirect } from "../lib/utils";
 import { parseCookies } from "nookies";
-import Link from "next/link";
+import Layout from "../components/Layout";
+import { redirect } from "../lib/utils";
 
 const Index: NextPage = () => (
-  <>
-    <p>You're in!</p>
-    <Link href="/reset-password">
-      <a>Reset password</a>
-    </Link>
-  </>
+  <Layout>
+    <h1>Budgets</h1>
+  </Layout>
 );
 
 Index.getInitialProps = async ctx => {

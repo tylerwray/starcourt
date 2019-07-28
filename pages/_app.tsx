@@ -1,9 +1,6 @@
-import App, { Container } from "next/app";
 import { ApolloProvider } from "@apollo/react-hooks";
-
-import Layout from "../components/Layout";
+import App, { Container } from "next/app";
 import { client } from "../lib/apollo";
-
 import "../style.css";
 
 class MyApp extends App {
@@ -13,9 +10,7 @@ class MyApp extends App {
     return (
       <Container className="w-full h-full">
         <ApolloProvider client={client}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </ApolloProvider>
       </Container>
     );
