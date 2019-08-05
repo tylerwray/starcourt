@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/react-hooks": "0.1.0-beta.11",
+    "@types/plaid-link": "^2.0.2",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.3",
     "autoprefixer": "^9.6.1",

@@ -102,7 +102,7 @@ const Login: NextPage = () => {
           </Button>
           <hr className="h-px w-3/4 bg-gray-400" />
           <Link href="sign-up">
-            <Button outline className=" w-3/4 mt-4">
+            <Button outline className="w-3/4 mt-4">
               Sign up &rarr;
             </Button>
           </Link>

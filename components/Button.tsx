@@ -6,13 +6,15 @@ interface Props extends React.HTMLProps<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<Props> = ({
-  children,
-  outline = false,
-  className,
-  type = "button",
-  ...props
-}) => {
+const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
+  const {
+    children,
+    outline = false,
+    className,
+    type = "button",
+    ...rest
+  } = props;
+
   const shared = "py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline";
   const filled =
     "bg-purple-500 focus:bg-purple-600 hover:bg-purple-600 text-white";
@@ -21,13 +23,14 @@ const Button: React.FC<Props> = ({
 
   return (
     <button
+      ref={ref}
       type={type}
       className={`${shared} ${className} ${outline ? outlined : filled}`}
-      {...props}
+      {...rest}
     >
       {children}
     </button>
   );
-};
+});
 
 export default Button;
