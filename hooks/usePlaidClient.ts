@@ -31,7 +31,6 @@ export default function usePlaidClient(): {
         key: "56005877544b69429b9a90d834d399",
         product: ["auth", "transactions"],
         onSuccess: publicToken => {
-          console.log(publicToken);
           client.mutate({
             mutation: LINK_BANK_ACCOUNT,
             variables: {
