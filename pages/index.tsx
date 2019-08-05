@@ -29,9 +29,12 @@ const Index: NextPage<{ accounts: IAccount[] }> = ({ accounts }) => {
         <Button onClick={handleClick}>Link a new account</Button>
       ) : (
         <>
-          <h1>Balances</h1>
+          <h1 className="text-2xl underline">Balances</h1>
           {accounts.map(account => (
-            <Account key={account.id} account={account} />
+            <>
+              <Account key={account.id} account={account} />
+              <hr className="h-px bg-gray-600" />
+            </>
           ))}
         </>
       )}

@@ -8,10 +8,16 @@ interface Props {
 const Account: React.FC<Props> = ({ account }) => {
   return (
     <>
-      <h5>{account.name}</h5>
-      <div>{account.subtype}</div>
-      <div>${account.balances.current}</div>
-      <div>${account.balances.available}</div>
+      <h5 className="text-lg">{account.name}</h5>
+      <div className="capitalize text-sm font-hairline">{account.subtype}</div>
+      <div>
+        <span className="italic font-hairline">Current: </span>
+        &#x24;{account.balances.current}
+      </div>
+      <div>
+        <span className="italic font-hairline">Available: </span>
+        &#x24;{account.balances.available}
+      </div>
     </>
   );
 };
