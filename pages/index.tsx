@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { parseCookies } from "nookies";
 import Layout from "../components/Layout";
-import { redirect } from "../lib/utils";
+import { redirect, isValidToken } from "../lib/utils";
 import { client } from "../lib/apollo";
 import gql from "graphql-tag";
 import Button from "../components/Button";
@@ -45,7 +45,7 @@ const Index: NextPage<{ accounts: IAccount[] }> = ({ accounts }) => {
 Index.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
 
-  if (!token) {
+  if (!isValidToken(token)) {
     redirect(ctx, "/login");
     return;
   }

@@ -7,7 +7,7 @@ import { parseCookies, setCookie } from "nookies";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { useFormField } from "../hooks/useFormField";
-import { redirect } from "../lib/utils";
+import { redirect, isValidToken } from "../lib/utils";
 
 const LOGIN = gql`
   mutation Login($username: String!, $password: String!) {
@@ -28,6 +28,17 @@ interface Variables {
   password: string;
 }
 
+const Header: React.FC = () => (
+  <>
+    <h1 className="mt-8 text-gray-800 text-4xl tracking-widest font-thin">
+      WEALTHYMENT
+    </h1>
+    <h5 className="text-gray-700 text-lg font-hairline">
+      Do anything you want, with money
+    </h5>
+  </>
+);
+
 const Login: NextPage = () => {
   const [login, { error, data }] = useMutation<Data, Variables>(LOGIN);
 
@@ -44,13 +55,8 @@ const Login: NextPage = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-full bg-gray-200">
-      <div className="hidden md:flex w-1/2 flex flex-col justify-center items-center">
-        <h1 className="mt-32 font-bold text-gray-800 text-4xl tracking-widest font-serif">
-          TARS
-        </h1>
-        <h5 className="text-gray-700 text-lg">
-          Do anything you want, with money
-        </h5>
+      <div className="hidden md:flex w-1/2 flex flex-col justify-center items-center pt-32">
+        <Header />
         <div className="flex-grow" />
         <img
           className="max-w-md mb-64"
@@ -59,12 +65,7 @@ const Login: NextPage = () => {
         />
       </div>
       <div className="md:hidden flex flex-col justify-center items-center">
-        <h1 className="mt-8 text-gray-800 text-4xl tracking-widest font-thin">
-          TARS
-        </h1>
-        <h5 className="text-gray-700 text-lg italic font-hairline">
-          Do anything you want, with money
-        </h5>
+        <Header />
       </div>
       <main className="w-full sm:w-1/2">
         <form
@@ -115,7 +116,7 @@ const Login: NextPage = () => {
 Login.getInitialProps = async ctx => {
   const { token } = parseCookies(ctx);
 
-  if (token) {
+  if (isValidToken(token)) {
     redirect(ctx, "/");
   }
 
