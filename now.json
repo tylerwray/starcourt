@@ -1,5 +1,0 @@
-{
-  "env": {
-    "MONGO_CONNECTION_STRING": "@mongo-connection-string"
-  }
-}
