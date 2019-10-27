@@ -23,7 +23,7 @@ const authLink = new ApolloLink((operation, forward) => {
 });
 
 const httpLink = new HttpLink({
-  uri: "https://starcourt.herokuapp.com/graphql", // Server URL (must be absolute)
+  uri: "https://wealthyment-api.herokuapp.com/graphql", // Server URL (must be absolute)
   credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
   // Use fetch() polyfill on the server
   fetch: !isBrowser && fetch
