@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { Plaid } from "plaid-link";
 import { useEffect, useState } from "react";
 import { client } from "../lib/apollo";
+import { parseCookies } from "nookies";
 
 let handler: Plaid.LinkHandler | null = null;
 
@@ -31,11 +32,13 @@ export default function usePlaidClient(): {
         key: "56005877544b69429b9a90d834d399",
         product: ["auth", "transactions"],
         onSuccess: publicToken => {
+          const { token } = parseCookies();
           client.mutate({
             mutation: LINK_BANK_ACCOUNT,
             variables: {
               publicToken
-            }
+            },
+            context: { token }
           });
         }
       });
