@@ -50,7 +50,7 @@ Index.getInitialProps = async ctx => {
     return;
   }
 
-  const { data } = await client.query<{ accounts: IAccount[] }>({
+  const { data, errors } = await client.query<{ accounts: IAccount[] }>({
     query: gql`
       query Accounts {
         accounts {
@@ -67,6 +67,8 @@ Index.getInitialProps = async ctx => {
     `,
     context: { token }
   });
+
+  console.log(errors);
 
   return { accounts: data.accounts };
 };
